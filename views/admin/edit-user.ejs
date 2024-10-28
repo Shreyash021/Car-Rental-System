@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(300deg, #c3bcc6, #b9e6e3, rgb(255, 255, 255));
+            background-size: 180% 180%;
+            animation: gradient-animation 6s ease infinite;
+            /* This will hide horizontal scrollbar */
+        }
+
+        @keyframes gradient-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        header {
+            background-color: #323f97;
+            color: #ffffff;
+            padding: 0 0 0 25px;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header img {
+            width: 30rem;
+            margin: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            margin-right: 10rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.3rem;
+            margin: 0 25px;
+        }
+
+        nav a:hover {
+            color: chartreuse;
+        }
+
+        .toggle-btn {
+            display: none;
+            /* Initially hide the toggle button */
+            cursor: pointer;
+            font-size: 28px;
+            position: absolute;
+            top: 25px;
+            right: 15px;
+        }
+
+        footer {
+            background-color: #323f97;
+            color: #fff;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 3rem;
+            text-align: center;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 1100px) {
+            header img {
+                width: 20rem;
+            }
+
+            nav a {
+                font-size: 1rem;
+                margin: 0 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header img {
+                width: 18rem;
+            }
+
+            .container {
+                margin-left: 20px;
+            }
+
+            .toggle-btn {
+                display: block;
+                /* Display the toggle button on small screens */
+            }
+
+            nav {
+                margin-right: 0rem;
+                display: flex;
+                flex-direction: column;
+                /* Display the navigation links vertically */
+                align-items: center;
+                margin-top: 7px;
+                display: none;
+                /* Initially hide the navigation links on small screens */
+                position: absolute;
+                top: 50px;
+                right: 0px;
+                background-color: #323f97;
+                padding: 60px;
+                animation: slideInOpacity 0.5s ease-in-out;
+            }
+
+            @keyframes slideInOpacity {
+                from {
+                    opacity: 0.5;
+                    transform: translateX(100%);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            nav a {
+                color: #fff;
+                text-decoration: none;
+                margin: 5px 0;
+            }
+
+        }
+
+        .img {
+            width: 50px;
+        }
+    </style>
+    <style>
+        .img {
+            width: 50px;
+            height: 50px;
+            border-radius: 100px;
+        }
+    </style>
+
+    <style>
+        .con {
+            /* background-color: #1f2d66; */
+            display: flex;
+            width: 100%;
+            /* align-items: center; */
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .container {
+            background-color: transparent;
+            padding: 20px;
+            margin: 20px;
+            max-width: 40%;
+            margin-left: 30rem;
+            margin-top: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container h1 {
+            color: rgb(16, 46, 167);
+            /* Dark text color for headings inside the container */
+            font-family: "Arvo", cursive;
+        }
+
+        form {
+            margin-top: 20px;
+            /* Add some space between the heading and the form */
+        }
+
+        form input[type="name"],
+        form input[type="email"],
+        form input[type="text"] {
+            width: 90%;
+            /* Make text input fields 100% width */
+            padding: 10px;
+            margin-bottom: 15px;
+            /* Add space between input fields */
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            /* Add a border to input fields */
+            border-radius: 5px;
+        }
+
+        form label {
+            margin-right: 10px;
+            /* Add space between radio buttons and labels */
+        }
+
+        form input[type="radio"] {
+            margin-right: 5px;
+            /* Add space between radio buttons */
+        }
+
+        form input[type="submit"] {
+            background-color: #323f97;
+            /* Dark blue background color for submit button */
+            color: #fff;
+            /* White text color for the submit button */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #1f2d66;
+            /* Darker blue on hover */
+        }
+
+        @media (max-width: 768px) {
+
+            .container {
+                margin: 30px;
+                max-width: 70%;
+            }
+        }
+    </style>
+    <style>
+        .btn2 {
+            padding: 10px 15px;
+            background-color: rgb(255, 1, 1);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn2:hover {
+            background-color: #b96529;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <div>
+            <img src="/userimages/car.png" alt="Icon">
+        </div>
+        <div class="toggle-btn" onclick="toggleNav()">☰</div>
+        <nav>
+            <a href="/admin/home">Home</a>
+            <a href="/admin/home">BookCar</a>
+            <a href="/admin/dashboard">Dashboard</a>
+            <a href="/admin/home"><img class="img" src="/userimages/<%= admin.image  %>" alt=""></a>
+        </nav>
+    </header>
+
+    <section>
+        <div class="con">
+            <div class="container">
+                <h1>Edit User Profile!!!</h1>
+                <form action="" method="POST">
+                    <input type="name" name="name" placeholder="Enter Name" value="<%= user.name  %>" required>
+                    <br><br>
+                    <input type="email" name="email" placeholder="Enter Email" value="<%= user.email  %>" required>
+                    <br><br>
+                    <input type="text" name="mno" placeholder="Enter Mobile Number" value="<%= user.mobile  %>"
+                        required>
+                    <br><br>
+                    <div id="inputFields" style="display: none;">
+                        <input type="text" name="price" value="<%= user.price %>" id="priceInput" required>
+                        <input type="text" name="carname" value="<%= user.carname %>" required id="carnameInput">
+                    </div>
+                    <label>Verified</label>
+                    <input type="radio" name="verify" value="1" <% if(user.is_varified==1){ %> checked <% } %> required>
+                        <label>unverified</label>
+                        <input type="radio" name="verify" value="0" <% if(user.is_varified==0){ %> checked <% } %>
+                            required>
+                            <br><br>
+                            <input type="hidden" name="id" value="<%= user._id  %>">
+                            <input type="submit" value="Edit">
+                            <br><br>
+                            <button class="btn2" onclick="toggleFields()">Delete Booking</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2023 Your Website Name. All rights reserved.
+    </footer>
+
+    <script>
+        function toggleNav() {
+            var nav = document.querySelector('nav');
+            var toggleBtn = document.querySelector('.toggle-btn');
+
+            if (nav.style.display === 'flex' || nav.style.display === '') {
+                nav.style.display = 'none';
+                toggleBtn.innerHTML = '☰';
+            } else {
+                nav.style.display = 'flex';
+                toggleBtn.innerHTML = '✖';
+            }
+        }
+    </script>
+
+    <script>
+        function toggleFields() {
+            var inputFields = document.getElementById('inputFields');
+            var priceInput = document.getElementById('priceInput');
+            var carnameInput = document.getElementById('carnameInput');
+
+            if (inputFields.style.display === 'none') {
+                inputFields.style.display = 'block';
+                priceInput.value = "0";
+                carnameInput.value = "-";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

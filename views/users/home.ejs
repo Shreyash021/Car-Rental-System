@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(300deg, #c3bcc6, #b9e6e3, rgb(255, 255, 255));
+            background-size: 180% 180%;
+            animation: gradient-animation 6s ease infinite;
+            /* This will hide horizontal scrollbar */
+        }
+
+        @keyframes gradient-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        header {
+            background-color: #323f97;
+            color: #ffffff;
+            padding: 0 0 0 25px;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header img {
+            width: 30rem;
+            margin: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            margin-right: 10rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.3rem;
+            margin: 0 25px;
+        }
+
+        nav a:hover {
+            color: chartreuse;
+        }
+
+        .toggle-btn {
+            display: none;
+            /* Initially hide the toggle button */
+            cursor: pointer;
+            font-size: 28px;
+            position: absolute;
+            top: 25px;
+            right: 15px;
+        }
+
+        footer {
+            background-color: #323f97;
+            color: #fff;
+            padding: 10px;
+            max-width: 100%;
+            bottom: 0;
+            height: 3rem;
+            text-align: center;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 1100px) {
+            header img {
+                width: 20rem;
+            }
+
+            nav a {
+                font-size: 1rem;
+                margin: 0 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header img {
+                width: 18rem;
+            }
+
+            .toggle-btn {
+                display: block;
+                /* Display the toggle button on small screens */
+            }
+
+            nav {
+                margin-right: 0rem;
+                display: flex;
+                flex-direction: column;
+                /* Display the navigation links vertically */
+                align-items: center;
+                margin-top: 7px;
+                display: none;
+                /* Initially hide the navigation links on small screens */
+                position: absolute;
+                top: 50px;
+                right: 0px;
+                background-color: #323f97;
+                padding: 60px;
+                animation: slideInOpacity 0.5s ease-in-out;
+            }
+
+            @keyframes slideInOpacity {
+                from {
+                    opacity: 0.5;
+                    transform: translateX(100%);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            nav a {
+                color: #fff;
+                text-decoration: none;
+                margin: 5px 0;
+            }
+
+        }
+
+        .img {
+            width: 50px;
+            height: 50px;
+            border-radius: 100px;
+        }
+    </style>
+
+    <style>
+        .heading {
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 0.8fr 2fr;
+            max-width: 90%;
+            margin-left: 50px;
+            gap: 10px;
+        }
+
+        .div1 {
+            margin-left: 40px;
+            border-right: 1px solid red;
+            max-width: 70%;
+        }
+
+        .div2 {
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hr {
+            border: 0;
+            height: 3px;
+            background: linear-gradient(to right, #ff8a00, #e52e71, #7d5fff);
+            margin: 0px 0 20px 0;
+            max-width: 70%;
+            margin-left: 400px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            font-family: "Arvo", cursive;
+            color: rgb(255, 0, 123);
+        }
+
+        .userimage {
+            width: 200px;
+            height: 200px;
+            border-radius: 300px;
+            box-shadow: 0px 0px 20px 2px rgb(99, 91, 91);
+        }
+
+        h3 {
+            color: rgb(6, 6, 182)
+        }
+
+        .edit {
+            background-color: #4c514c;
+            width: 200px;
+            height: 25px;
+            text-align: center;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .edit a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+
+        .edit:hover {
+            background-color: #393a3b;
+            cursor: pointer;
+        }
+
+        button {
+            border: none;
+            background-color: transparent;
+            height: 60px;
+            width: 60px;
+            margin-left: 60px;
+        }
+
+        .booked{
+                display: none;
+                margin-left: 120px;
+            }
+
+        button:hover {
+            transform: scaleX(.5);
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .booked{
+                display: block;
+            }
+
+            .userimage{
+                display: none;
+            }
+
+            .logoutb{
+                display: none;
+            }
+
+            .div1 {
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+
+    <style>
+        #printButton {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body style="overflow-x: auto;">
+
+    <header>
+        <div>
+            <img src="userimages/car.png" alt="Icon">
+        </div>
+        <div class="toggle-btn" onclick="toggleNav()">☰</div>
+        <nav>
+            <a href="/home">Home</a> 
+            <a href="/addcar?id=<%= user._id %>">BookCar</a>
+            <a href="aboutpage">About</a>
+            <a href="/home"><img class="img" src="userimages/<%= user.image %>" alt="<%= user.image %>"></a>
+        </nav>
+    </header>
+
+    <section>
+        <div class="heading">
+            <h1>Welcome, Dear <i>
+                    <%= user.name %>!
+                </i></h1>
+            <hr class="hr">
+        </div>
+        <div class="grid">
+            <div class="div1">
+                <div>
+                    <img class="userimage" src="userimages/<%= user.image %>" alt="<%= user.image %>">
+                </div>
+
+                <div>
+                    <h3>
+                        <%= user.name %>
+                    </h3>
+                    <h3>
+                        <%= user.email %>
+                    </h3>
+                    <h3>
+                        <i>+91 <%= user.mobile %></i>
+                    </h3>
+                    <h3>
+                        <% if(user.is_varified==1){ %>
+                            <p>verified</p>
+                            <% } else{ %>
+                                <p>Not verified</p>
+                                <% } %>
+                    </h3>
+                    <div class="edit">
+                        <a href="/edit?id=<%= user._id %>">
+                            <div class="edit">Edit Profile</div>
+                        </a>
+                    </div>
+                    <div class="btn">
+                        <button class="logoutb" ><a href="/logout"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C15.2713 2 18.1757 3.57078 20.0002 5.99923L17.2909 5.99931C15.8807 4.75499 14.0285 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C14.029 20 15.8816 19.2446 17.2919 17.9998L20.0009 17.9998C18.1765 20.4288 15.2717 22 12 22ZM19 16V13H11V11H19V8L24 12L19 16Z"
+                                        fill="rgba(255,2,2,1)"></path>
+                                </svg></a></button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="div2">
+                <h1>Rental Car's History!!!!!</h1> 
+
+                <% if (user.price !== 0) { %>
+                    <div class="history" id="history">
+                        <img src="userimages/car/<%= user.carname %>.jpeg" alt="">
+                        <h3>Car Name : <%= user.carname %></h3>
+                        <h3>Total Amount : <%= user.price %></h3>
+                        <div>
+                            <% if (user.carname === 'Fortuner') { %>
+                                <h3> Total Hours :  <%= user.price / 1000 %></h3>
+                            <% } else if (user.carname === 'Harrier') { %>
+                                <h3> Total Hours :  <%= user.price / 800 %>Hrs</h3>
+                            <% }
+                                else if (user.carname === 'Scarpio') { %>
+                                <h3> Total Hours :  <%= user.price / 750 %>Hrs</h3>
+                            <% } else if (user.carname === 'Creta') { %>
+                                <h3> Total Hours :  <%= user.price / 650 %>Hrs</h3>
+                            <% } else if (user.carname === 'BMW') { %>
+                                <h3> Total Hours :  <%= user.price / 1500 %>Hrs</h3>
+                            <% } else if (user.carname === 'i20') { %>
+                                <h3> Total Hours :  <%= user.price / 600 %>Hrs</h3>
+                            <% } else if (user.carname === 'Thar') { %>
+                                <h3> Total Hours :  <%= user.price / 900 %>Hrs</h3>
+                            <% } else if (user.carname === 'Innova') { %>
+                                <h3> Total Hours :  <%= user.price / 800 %>Hrs</h3>
+                            <% } 
+                            %>
+                        </div>
+                        <h4><i>You have successfully rented a <%= user.carname %> car on <%= (new Date()).toLocaleDateString('en-US') %></i></h4>
+
+                        <img class="booked" src="userimages/car/booked.png" alt=""/>
+                        <button id="printButton" onclick="printPage()">Print</button>
+                    </div>
+                <% } %>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2023 Your Website Name. All rights reserved.
+    </footer>
+
+    <script>
+        function printPage() {
+            window.print();
+        }
+    </script>
+
+    <script>
+        function toggleNav() {
+            var nav = document.querySelector('nav');
+            var toggleBtn = document.querySelector('.toggle-btn');
+
+            if (nav.style.display === 'flex' || nav.style.display === '') {
+                nav.style.display = 'none';
+                toggleBtn.innerHTML = '☰';
+            } else {
+                nav.style.display = 'flex';
+                toggleBtn.innerHTML = '✖';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

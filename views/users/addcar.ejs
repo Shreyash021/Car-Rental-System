@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            background-size: 180% 180%;
+            animation: gradient-animation 6s ease infinite;
+            /* This will hide horizontal scrollbar */
+        }
+
+        @keyframes gradient-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        header {
+            background-color: #323f97;
+            color: #ffffff;
+            padding: 0 0 0 25px;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header img {
+            width: 30rem;
+            margin: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            margin-right: 10rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.3rem;
+            margin: 0 25px;
+        }
+
+        nav a:hover {
+            color: chartreuse;
+        }
+
+        .toggle-btn {
+            display: none;
+            /* Initially hide the toggle button */
+            cursor: pointer;
+            font-size: 28px;
+            position: absolute;
+            top: 25px;
+            right: 15px;
+        }
+
+        footer {
+            background-color: #323f97;
+            color: #fff;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 3rem;
+            text-align: center;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 1100px) {
+            header img {
+                width: 20rem;
+            }
+
+            nav a {
+                font-size: 1rem;
+                margin: 0 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header img {
+                width: 18rem;
+            }
+
+            .toggle-btn {
+                display: block;
+                /* Display the toggle button on small screens */
+            }
+
+            nav {
+                margin-right: 0rem;
+                display: flex;
+                flex-direction: column;
+                /* Display the navigation links vertically */
+                align-items: center;
+                margin-top: 7px;
+                display: none;
+                /* Initially hide the navigation links on small screens */
+                position: absolute;
+                top: 50px;
+                right: 0px;
+                background-color: #323f97;
+                padding: 60px;
+                animation: slideInOpacity 0.5s ease-in-out;
+            }
+
+            @keyframes slideInOpacity {
+                from {
+                    opacity: 0.5;
+                    transform: translateX(100%);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            nav a {
+                color: #fff;
+                text-decoration: none;
+                margin: 5px 0;
+            }
+
+        }
+
+        .img {
+            width: 50px;
+        }
+    </style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .car-grid {
+            display: grid;
+            max-width: 90%;
+            margin-left: 5rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .car {
+            border: 2px solid #ddd;
+            box-shadow: 0 0 10px #ddd;
+            /* padding: 5px; */
+            margin-top: 5px;
+            text-align: center;
+            cursor: pointer;
+            width: 80%;
+            height: 16rem;
+        }
+
+        .car:hover {
+            border: 2px solid #3498db;
+            /* Change border color on hover */
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+            /* Add a box shadow on hover */
+        }
+
+        .car-img {
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 0px;
+        }
+
+        .car-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .car-price {
+            color: #555;
+        }
+
+        .form {
+            display: none;
+        }
+
+        .hrs {
+            width: 20px;
+        }
+
+        /* Basic styling for the button */
+        .submit {
+            background-color: #3498db;
+            /* Button background color */
+            color: #fff;
+            /* Button text color */
+            padding: 10px 20px;
+            /* Padding for better appearance */
+            border: none;
+            /* Remove default border */
+            border-radius: 5px;
+            /* Add rounded corners */
+            cursor: pointer;
+            /* Change cursor to pointer on hover */
+        }
+
+        /* Hover effect */
+        .submit:hover {
+            background-color: #2980b9;
+            /* Change background color on hover */
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div>
+            <img src="userimages/car.png" alt="Icon">
+        </div>
+        <div class="toggle-btn" onclick="toggleNav()">☰</div>
+        <nav>
+            <a href="/home">Home</a>
+            <a href="/home">BookCar</a>
+            <a href="/addcar?id=<%= user._id %>">addcar</a>
+            <a href="aboutpage">About</a>
+            <a href="/home"><img class="img" src="userimages/<%= user.image %>" alt="<%= user.image %>"></a>
+        </nav>
+    </header>
+
+    <section>
+        <div class="car-grid">
+            <!-- Car 1 -->
+            <div class="car">
+                <img style="height: 130px;" class="car-img" src="userimages/car/Fortuner.jpeg" alt="Icon">
+                <div class="car-name">Fortuner</div>
+                <div class="car-price">₹ <span id="displayedPrice">1000</span> / hr</div>
+                <!-- <input type="text"> -->
+                <div>
+
+                    <input type="text" name="hours" class="hrs" id="hoursInput" placeholder="Hrs" required>
+                    <form action="" enctype="multipart/form-data" method="post">
+
+                        <input type="hidden" name="user_id" value="<%= user._id  %>">
+
+                        <input class="form" type="text" name="carname" value="Fortuner" placeholder="Enter Name"
+                            required id="">
+                        <input class="form" type="text" name="price" id="priceInput" required id="">
+                        <br>
+
+
+                        <input type="submit" class="submit" value="BookCar">
+
+                    </form>
+                </div>
+            </div>
+
+            <!-- Car 2 -->
+            <div class="car">
+                <img class="car-img" src="userimages/car/Harrier.jpeg" alt="Icon">
+                <div class="car-name">Harrier</div>
+                <div class="car-price">₹ <span id="displayedPrice2">800</span> / hr</div>
+                <!-- <input type="text"> -->
+                <div>
+
+                    <input type="text" name="hours" class="hrs" id="hoursInput2" placeholder="Hrs" required>
+                    <form action="" enctype="multipart/form-data" method="post">
+
+                        <input type="hidden" name="user_id" value="<%= user._id  %>">
+
+                        <input class="form" type="text" name="carname" value="Harrier" placeholder="Enter Name" required
+                            id="">
+                        <input class="form" type="text" name="price" id="priceInput2" required id="">
+                        <br>
+
+
+                        <input type="submit" class="submit" value="BookCar">
+
+                    </form>
+                </div>
+            </div>
+
+            <!-- Car 3 -->
+            <div class="car">
+                <img class="car-img" src="userimages/car/Scarpio.jpeg" alt="Icon">
+                <div class="car-name">Scarpio</div>
+                <div class="car-price">₹ <span id="displayedPrice3">750</span> / hr</div>
+                <!-- <input type="text"> -->
+                <div>
+
+                    <input type="text" name="hours" class="hrs" id="hoursInput3" placeholder="Hrs" required>
+                    <form action="" enctype="multipart/form-data" method="post">
+
+                        <input type="hidden" name="user_id" value="<%= user._id  %>">
+
+                        <input class="form" type="text" name="carname" value="Scarpio" placeholder="Enter Name" required
+                            id="">
+                        <input class="form" type="text" name="price" id="priceInput3" required id="">
+                        <br>
+
+
+                        <input type="submit" class="submit" value="BookCar">
+
+                    </form>
+                </div>
+            </div>
+
+            <!-- Car 4 -->
+            <div class="car">
+                <img class="car-img" src="userimages/car/Creta.jpeg" alt="Icon"><br><br>
+                <div class="car-name">Creta</div>
+                <div class="car-price">₹ <span id="displayedPrice4">650</span> / hr</div>
+                <!-- <input type="text"> -->
+                <div>
+
+                    <input type="text" name="hours" class="hrs" id="hoursInput4" placeholder="Hrs" required>
+                    <form action="" enctype="multipart/form-data" method="post">
+
+                        <input type="hidden" name="user_id" value="<%= user._id  %>">
+
+                        <input class="form" type="text" name="carname" value="Creta" placeholder="Enter Name" required
+                            id="">
+                        <input class="form" type="text" name="price" id="priceInput4" required id="">
+                        <br>
+
+
+                        <input type="submit" class="submit" value="BookCar">
+
+                    </form>
+                </div>
+            </div>
+
+            <!-- Car 5 -->
+            <div class="car">
+                <img class="car-img" src="userimages/car/BMW.jpeg" alt="Icon">
+                <div class="car-name">BMW</div>
+                <div class="car-price">₹ <span id="displayedPrice5">1500</span> / hr</div>
+                <!-- <input type="text"> -->
+                <div>
+
+                    <input type="text" name="hours" class="hrs" id="hoursInput5" placeholder="Hrs" required>
+                    <form action="" enctype="multipart/form-data" method="post">
+
+                        <input type="hidden" name="user_id" value="<%= user._id  %>">
+
+                        <input class="form" type="text" name="carname" value="BMW" placeholder="Enter Name" required
+                            id="">
+                        <input class="form" type="text" name="price" id="priceInput5" required id="">
+                        <br>
+
+
+                        <input type="submit" class="submit" value="BookCar">
+
+                    </form>
+                </div>
+            </div>
+
+            <!-- Car 6 -->
+            <div class="car">
+                <img style="height: 130px;" class="car-img" src="userimages/car/i20.jpeg" alt="Icon">
+                <div class="car-name">i20</div>
+                <div class="car-price">₹ <span id="displayedPrice6">600</span> / hr</div>
+                <!-- <input type="text"> -->
+                <div>
+
+                    <input type="text" name="hours" class="hrs" id="hoursInput6" placeholder="Hrs" required>
+                    <form action="" enctype="multipart/form-data" method="post">
+
+                        <input type="hidden" name="user_id" value="<%= user._id  %>">
+
+                        <input class="form" type="text" name="carname" value="i20" placeholder="Enter Name" required
+                            id="">
+                        <input class="form" type="text" name="price" id="priceInput6" required id="">
+                        <br>
+
+
+                        <input type="submit" class="submit" value="BookCar">
+
+                    </form>
+                </div>
+            </div>
+
+            <!-- Car 7 -->
+            <div class="car">
+                <img class="car-img" src="userimages/car/Thar.jpeg" alt="Icon">
+                <div class="car-name">Thar</div>
+                <div class="car-price">₹ <span id="displayedPrice7">900</span> / hr</div>
+                <!-- <input type="text"> -->
+                <div>
+
+                    <input type="text" name="hours" class="hrs" id="hoursInput7" placeholder="Hrs" required>
+                    <form action="" enctype="multipart/form-data" method="post">
+
+                        <input type="hidden" name="user_id" value="<%= user._id  %>">
+
+                        <input class="form" type="text" name="carname" value="Thar" placeholder="Enter Name" required
+                            id="">
+                        <input class="form" type="text" name="price" id="priceInput7" required id="">
+                        <br>
+
+
+                        <input type="submit" class="submit" value="BookCar">
+
+                    </form>
+                </div>
+            </div>
+
+            <!-- Car 8 -->
+            <div class="car">
+                <img class="car-img" src="userimages/car/Innova.jpeg" alt="Icon">
+                <div class="car-name">Innova</div>
+                <div class="car-price">₹ <span id="displayedPrice8">800</span> / hr</div>
+                <!-- <input type="text"> -->
+                <div>
+
+                    <input type="text" name="hours" class="hrs" id="hoursInput8" placeholder="Hrs" required>
+                    <form action="" enctype="multipart/form-data" method="post">
+
+                        <input type="hidden" name="user_id" value="<%= user._id  %>">
+
+                        <input class="form" type="text" name="carname" value="Innova" placeholder="Enter Name" required
+                            id="">
+                        <input class="form" type="text" name="price" id="priceInput8" required id="">
+                        <br>
+
+
+                        <input type="submit" class="submit" value="BookCar">
+
+                    </form>
+                </div>
+            </div>
+
+            <!-- Add more cars as needed -->
+
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2023 Your Website Name. All rights reserved.
+    </footer>
+
+    <script>
+        function toggleNav() {
+            var nav = document.querySelector('nav');
+            var toggleBtn = document.querySelector('.toggle-btn');
+
+            if (nav.style.display === 'flex' || nav.style.display === '') {
+                nav.style.display = 'none';
+                toggleBtn.innerHTML = '☰';
+            } else {
+                nav.style.display = 'flex';
+                toggleBtn.innerHTML = '✖';
+            }
+        }
+    </script>
+    <script>
+        document.getElementById('hoursInput').addEventListener('input', function () {
+            var hours = parseInt(this.value, 10) || 0;
+            var rate = 1000;
+            var calculatedPrice = hours * rate;
+
+            // Set the value of the price input field
+            document.getElementById('priceInput').value = calculatedPrice;
+        });
+
+        document.getElementById('hoursInput2').addEventListener('input', function () {
+            var hours = parseInt(this.value, 10) || 0;
+            var rate = 800;
+            var calculatedPrice = hours * rate;
+
+            // Set the value of the price input field
+            document.getElementById('priceInput2').value = calculatedPrice;
+        });
+
+        document.getElementById('hoursInput3').addEventListener('input', function () {
+            var hours = parseInt(this.value, 10) || 0;
+            var rate = 750;
+            var calculatedPrice = hours * rate;
+
+            // Set the value of the price input field
+            document.getElementById('priceInput3').value = calculatedPrice;
+
+            // Update the displayed price in the HTML 
+        });
+
+        document.getElementById('hoursInput4').addEventListener('input', function () {
+            var hours = parseInt(this.value, 10) || 0;
+            var rate = 650;
+            var calculatedPrice = hours * rate;
+
+            // Set the value of the price input field
+            document.getElementById('priceInput4').value = calculatedPrice;
+
+            // Update the displayed price in the HTML 
+        });
+
+
+        document.getElementById('hoursInput5').addEventListener('input', function () {
+            var hours = parseInt(this.value, 10) || 0;
+            var rate = 1500;
+            var calculatedPrice = hours * rate;
+
+            // Set the value of the price input field
+            document.getElementById('priceInput5').value = calculatedPrice;
+
+            // Update the displayed price in the HTML 
+        });
+
+        document.getElementById('hoursInput6').addEventListener('input', function () {
+            var hours = parseInt(this.value, 10) || 0;
+            var rate = 600;
+            var calculatedPrice = hours * rate;
+
+            // Set the value of the price input field
+            document.getElementById('priceInput6').value = calculatedPrice;
+
+            // Update the displayed price in the HTML 
+        });
+
+        document.getElementById('hoursInput7').addEventListener('input', function () {
+            var hours = parseInt(this.value, 10) || 0;
+            var rate = 900;
+            var calculatedPrice = hours * rate;
+
+            // Set the value of the price input field
+            document.getElementById('priceInput7').value = calculatedPrice;
+
+            // Update the displayed price in the HTML 
+        });
+
+        document.getElementById('hoursInput8').addEventListener('input', function () {
+            var hours = parseInt(this.value, 10) || 0;
+            var rate = 800;
+            var calculatedPrice = hours * rate;
+
+            // Set the value of the price input field
+            document.getElementById('priceInput8').value = calculatedPrice;
+
+            // Update the displayed price in the HTML 
+        });
+    </script>
+
+</body>
+
+</html>

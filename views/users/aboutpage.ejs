@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(300deg, #c3bcc6, #b9e6e3, rgb(255, 255, 255));
+            background-size: 180% 180%;
+            animation: gradient-animation 6s ease infinite;
+            /* This will hide horizontal scrollbar */
+        }
+
+        @keyframes gradient-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        header {
+            background-color: #323f97;
+            color: #ffffff;
+            padding: 0 0 0 25px;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header img {
+            width: 30rem;
+            margin: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            margin-right: 10rem;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.3rem;
+            margin: 0 25px;
+        }
+
+        nav a:hover {
+            color: chartreuse;
+        }
+
+        .toggle-btn {
+            display: none;
+            /* Initially hide the toggle button */
+            cursor: pointer;
+            font-size: 28px;
+            position: absolute;
+            top: 25px;
+            right: 15px;
+        }
+
+        footer {
+            background-color: #323f97;
+            color: #fff;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 3rem;
+            text-align: center;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 1100px) {
+            header img {
+                width: 20rem;
+            }
+
+            nav a {
+                font-size: 1rem;
+                margin: 0 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header img {
+                width: 18rem;
+            }
+
+            .toggle-btn {
+                display: block;
+                /* Display the toggle button on small screens */
+            }
+
+            nav {
+                margin-right: 0rem;
+                display: flex;
+                flex-direction: column;
+                /* Display the navigation links vertically */
+                align-items: center;
+                margin-top: 7px;
+                display: none;
+                /* Initially hide the navigation links on small screens */
+                position: absolute;
+                top: 50px;
+                right: 0px;
+                background-color: #323f97;
+                padding: 60px;
+                animation: slideInOpacity 0.5s ease-in-out;
+            }
+
+            @keyframes slideInOpacity {
+                from {
+                    opacity: 0.5;
+                    transform: translateX(100%);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            nav a {
+                color: #fff;
+                text-decoration: none;
+                margin: 5px 0;
+            }
+
+        }
+
+        .img {
+            width: 50px;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div>
+            <img src="userimages/car.png" alt="Icon">
+        </div>
+        <div class="toggle-btn" onclick="toggleNav()">☰</div>
+        <nav> 
+            <a href="#">About</a> 
+            <a href="#"><img class="img" src="userimages/admin_login.png" alt=""></a>
+        </nav>
+    </header>
+
+    <section>
+        <h2>About Us</h2>
+        <p>Welcome to Your Car Rental System's Name, where we redefine your travel experience with top-quality and
+            reliable car rentals. Our mission is to provide you with a diverse fleet of vehicles, exceptional service,
+            and a seamless booking process.</p>
+
+        <h2>Why Choose Us?</h2>
+        <ul>
+            <li>Diverse Fleet: From sleek sedans to spacious SUVs, we have a vehicle for every need.</li>
+            <li>Quality Assurance: Our vehicles undergo rigorous inspections for your safety.</li>
+            <li>User-Friendly Platform: Easily browse, reserve, and manage your bookings online.</li>
+            <li>Competitive Pricing: Enjoy transparent pricing with no hidden fees.</li>
+            <li>Convenient Locations: Our rental stations are strategically located for your convenience.</li>
+        </ul>
+
+        <h2>Contact Us</h2>
+        <p>We are available 24/7. Contact our dedicated customer support team for any questions or assistance.</p>
+    </section>
+
+    <footer>
+        &copy; 2023 Your Website Name. All rights reserved.
+    </footer>
+
+    <script>
+        function toggleNav() {
+            var nav = document.querySelector('nav');
+            var toggleBtn = document.querySelector('.toggle-btn');
+
+            if (nav.style.display === 'flex' || nav.style.display === '') {
+                nav.style.display = 'none';
+                toggleBtn.innerHTML = '☰';
+            } else {
+                nav.style.display = 'flex';
+                toggleBtn.innerHTML = '✖';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
